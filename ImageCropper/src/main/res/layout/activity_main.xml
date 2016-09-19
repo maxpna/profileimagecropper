@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.mxp.imagecropper.MainActivity">
+
+    <com.mxp.profileimagecropper.ProfileImageCropper
+        android:id="@+id/profileImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cropperBackground="#75fcde00"
+        app:cropperBorder="#ffffff"
+        app:cropperBorderWidth="3dp"
+        app:cropperWidth="200dp"
+        app:cropperMinimumWidth="150dp"
+        app:handleBackground="#df8507"
+        app:handleBorder="#ffffff"
+        app:handleBorderWidth="5dp"
+        app:handleWidth="20dp"
+        android:layout_weight="1"
+        android:background="#ebcd45"
+        android:scaleType="fitCenter"
+        android:src="@drawable/modelstand"/>
+    <!--app:handleBackground="#8c008c"-->
+    <!--app:handleBorder="#0000ff"-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="0">
+        <Button
+            android:id="@+id/loadNew"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="load"
+            style="android:style/Widget.Material.Button"/>
+
+        <Button
+            android:id="@+id/cropImage"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="crop"
+            style="android:style/Widget.Material.Button"/>
+        <Button
+            android:id="@+id/reload"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="reload"
+            />
+        <!--style="?android:attr/borderlessButtonStyle"-->
+
+        <Button
+            android:id="@+id/border"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Border"
+            />
+            <!--style="@style/BrandButtonStyle"-->
+    </LinearLayout>
+</LinearLayout>

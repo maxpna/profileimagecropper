@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ImageCropper/ImageCropper.iml" filepath="$PROJECT_DIR$/ImageCropper/ImageCropper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProfileImageCropper.iml" filepath="$PROJECT_DIR$/ProfileImageCropper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProfileImageCropper/ProfileImageCropper-ProfileImageCropper.iml" filepath="$PROJECT_DIR$/ProfileImageCropper/ProfileImageCropper-ProfileImageCropper.iml" />
+    </modules>
+  </component>
+</project>

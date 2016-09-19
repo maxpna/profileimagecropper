@@ -1,0 +1,133 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+ext {
+    bintrayRepo = 'com.mxp.profileimagecropper'
+    bintrayName = 'profile-image-cropper'
+
+    publishedGroupId = 'com.mxp.profileimagecropper'
+    libraryName = 'profile-image-cropper'
+    artifact = 'profile-image-cropper'
+
+    libraryDescription = 'A wrapper for Facebook Native Like Button (LikeView) on Android'
+
+    siteUrl = 'https://github.com/maxpower-ndrd/profileimagecropper'
+    gitUrl = 'https://github.com/maxpower-ndrd/profileimagecropper.git'
+
+    libraryVersion = '0.0.2'
+
+    developerId = 'mxp'
+    developerName = 'mxp'
+    developerEmail = 'mpndrd@outlook.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 24
+        versionCode 1
+        versionName "0.0.2"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//
+//install {
+//    repositories.mavenInstaller {
+//        // This generates POM.xml with proper parameters
+//        pom {
+//            project {
+//                packaging 'aar'
+//
+//                // Add your description here
+//                name 'A simple lib to crop images'
+//                url properties.getProperty('project.Url')
+//
+//                // Set your license
+//                licenses {
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id properties.getProperty('bintray.user')
+//                        name properties.getProperty('bintray.user')
+//                        email properties.getProperty('user.email')
+//                    }
+//                }
+//                scm {
+//                    connection properties.getProperty('project.gitUrl')
+//                    developerConnection properties.getProperty('project.gitUrl')
+//                    url properties.getProperty('project.Url')
+//
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//// added for publishing to jcenter, from bintray to deps, excluding deps
+//bintray {
+//    user = properties.getProperty('bintray.user')
+//    key = properties.getProperty('bintray.apikey')
+//
+//    configurations = ['archives']
+//
+//    pkg {
+//        repo = "com.mxp.profileimagecropper"
+//        name = group
+//        websiteUrl = properties.getProperty('project.Url')
+//        licenses = ['Apache-2.0']
+//        vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+//        desc = 'initial release, testing it out'
+//        publish = true
+//    }
+//}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    testCompile 'org.testng:testng:6.9.6'
+}
+
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+////    options.addStringOption("charset", "UTF-8")
+////    options.encoding = 'UTF-8'
+//}
+//artifacts {
+//    archives javadocJar
+//    archives sourcesJar
+//}
+
+// Place it at the end of the file
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
