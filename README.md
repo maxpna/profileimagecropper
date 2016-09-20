@@ -8,7 +8,7 @@
 1. [The What](#the-what)
 2. [The Who](#the-who)
 3. [The Hows](#the-hows)
-  2. [The Hows to Get](#how-to-get)
+  2. [How to Get](#how-to-get)
   1. [How to Use](#how-to-use)
     1. [How to Use the Widget](#how-to-use-the-widget)
     1. [How to Use the Activity](#how-to-use-the-activity)
@@ -81,7 +81,11 @@ To load an image into the widget, use the following code. You can use any other 
   Picasso.with(getBaseContext()).load(f).fit().centerInside().into(image);
 ```
 
+####Cropping the image
+
 Add a button to your UI so the user can request a crop once they're done selecting the target area. In your button click, use the following code to drop the image.
+
+**Note**: Please note at this time the .crop() method only returns a bitmap. It's possible that the returning bitmap is so large that it causes an out of memory error. A workable solution is being worked on.
 
 ```
     Button cropButton = (Button) findViewById(R.id.cropImage);
