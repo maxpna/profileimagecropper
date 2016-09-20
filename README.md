@@ -13,6 +13,7 @@
     1. [How to Use the Widget](#how-to-use-the-widget)
     1. [How to Use the Activity](#how-to-use-the-activity)
 4. [The Rest](#the-rest)
+  1. [Conributions](#conributions)
 
 #The What
 This is a simple android library that allows you to crop images. The main purpose is to crop profile images. The library doesn't focus on picture quality, resolution fidelity, or any other aspect of image quality preservation. This library focuses on the ease of allowing a developer to add code to their app so their users can select and crop an image to use as their profile image.
@@ -127,4 +128,26 @@ startActivityForResult(intent, PICA_ACITIVTY);
 ```
 
 ####Receiving result from launched activity
+The activity saves the image in a temporary file and returns the filename to you in the intent. You can use it to display the image in the ImageView or in any other view. 
 
+**Note**: you must save the image to another location if you wish to keep it. The default location is in temporary files cache and the image is not guaranteed to stay there.
+
+```
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  super.onActivityResult(requestCode, resultCode, data);
+  if (requestCode == PICA_ACITIVTY && resultCode == RESULT_OK) {
+    if (data == null) return;
+
+    // use file in filename, and then store it, move it, or delete it, it's in a temporary folder.
+    String fileName = data.getStringExtra("result");
+
+    try {
+      File f = new File(fileName);
+      Picasso.with(this).load(f).fit().centerInside().into(image);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+```
