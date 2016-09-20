@@ -8,6 +8,8 @@
 1. [The What](#the-what)
 2. [The Who](#the-who)
 3. [The Hows](#the-hows)
+  1. [How to Get](#how-to-get)
+  2. [How to Use](#how-to-use)
 4. [The Rest](#the-rest)
 
 ##The What
@@ -27,13 +29,38 @@ This library is for you if all you want is to add a gradle dep and move on.
 This library is for you if you're ok with modest customizations and don't require extensive control the widget UI.
 
 ##The Hows
-###How To Get
-To use this library, add the following (highlighted) dependency in module's build.gradle file. This 
+###How to Get
+To use this library, add the following compile line the dependencies section of your module's build.gradle file.
 
 ```
 dependencies {
   ...
-  **compile 'com.mxp.profileimagecropper:profile-image-cropper:0.0.2'**
+  compile 'com.mxp.profileimagecropper:profile-image-cropper:0.0.2'
   ...
 }
 ```
+###How to Use
+To add the widget in your existing activity, use the following code. The attributes shown allow you to customize the UI, but they are optional. If you leave them out, the library will use default values. Note, you can start with a default image loaded by using __android:src=__ element.
+
+```
+    <com.mxp.profileimagecropper.ProfileImageCropper
+        android:id="@+id/profileImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cropperBackground="#75fcde00"
+        app:cropperBorder="#ffffff"
+        app:cropperBorderWidth="3dp"
+        app:cropperWidth="200dp"
+        app:cropperMinimumWidth="150dp"
+        app:handleBackground="#df8507"
+        app:handleBorder="#ffffff"
+        app:handleBorderWidth="5dp"
+        app:handleWidth="20dp"
+        android:layout_weight="1"
+        android:background="#ebcd45"
+        android:scaleType="fitCenter"
+        android:src="@drawable/modelstand"/>
+```
+
+This widget extends ImageView so you should be able to use all the ImageView proeprties.
+
