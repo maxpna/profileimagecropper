@@ -60,11 +60,9 @@ public class ProfileImageCropper extends ImageView {
   private boolean inside = false;
 
   // These values are for the handle
-  private float mHandlePosX;
-  private float mHandlePosY;
   private boolean insideHandle = false;
 
-  private boolean editMode = true;
+  private boolean editMode = false;
 
   private boolean drawBorder = false;
   private Rect imageBorder;
@@ -178,6 +176,7 @@ public class ProfileImageCropper extends ImageView {
 
   public Bitmap crop() {
     if (!editMode) throw new IllegalStateException("Not in edit mode");
+    if(getDrawable()==null) throw new IllegalStateException("No drawable set!");
 
     // create a new rect with bounds and adjust bounds if they're outside the image
     Rect tmpr = new Rect(cropperBounds);
@@ -204,8 +203,8 @@ public class ProfileImageCropper extends ImageView {
     Log.d(TAG, "percX: " + percX + "%, perxY: " + percY + "%, percW: " + percW + "%, perxH: " + percH+"%");
 
     // create a bitmap from source
-    final BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
     Bitmap bmp = ((BitmapDrawable) getDrawable()).getBitmap();
+    final BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
     bitmapOptions.inDensity = bmp.getDensity();
     bitmapOptions.inTargetDensity = 1;
     bmp.setDensity(Bitmap.DENSITY_NONE);
@@ -226,80 +225,7 @@ public class ProfileImageCropper extends ImageView {
       " - finalCut.width/bmp.Width (" + (finalCut.right - finalCut.left) + "*" + (bmp.getWidth()) + "): " + ((finalCut.right - finalCut.left) * (bmp.getWidth())));
 
     Bitmap bmp2 = Bitmap.createBitmap(bmp, finalCut.left, finalCut.top, finalCut.right, finalCut.bottom);
-
     return bmp2;
-
-//        bmp = Bitmap.createBitmap(bmp, r.left, r.top, r.right, r.bottom);
-
-//    image.setImageBitmap(bmp);
-
-//    return cropperBounds;
-  }
-
-  public Bitmap crop2() {
-    if (!editMode) throw new IllegalStateException("Not in edit mode");
-
-    // create a new rect with bounds and adjust bounds if they're outside the image
-    Rect tmpr = new Rect(cropperBounds);
-//    if (tmpr.left < imageBorder.left) tmpr.left = imageBorder.left;
-//    if (tmpr.top < imageBorder.top) tmpr.top = imageBorder.top;
-//    if (tmpr.right > imageBorder.right) tmpr.right = imageBorder.right;
-//    if (tmpr.bottom > imageBorder.bottom) tmpr.bottom = imageBorder.bottom;
-//    // // TODO: 9/16/2016 check if right is less than left, or bottom is less than top, fix that
-//    if (tmpr.right < tmpr.left) tmpr.right = tmpr.left + 1;
-//    if (tmpr.bottom < tmpr.top) tmpr.bottom = tmpr.top + 1;
-
-    // // TODO: 9/16/2016 almost done, need to compensate for when the image doesn't start as 0,0
-
-    logRect(imageBorder, "imageBorder");
-    logRect(tmpr, "cropperBounds");
-
-    // translate the bounds into percentages so the start and end is described as a percentage from
-    // left,top of the image as drawn on screen. uses image border which has real screen coordinates.
-    float percX = ((float) tmpr.left - imageBorder.left) / ((float) imageBorder.right - imageBorder.left);
-    float percY = ((float) tmpr.top - imageBorder.top) / ((float) imageBorder.bottom - imageBorder.top);
-    float percW = ((float) tmpr.right) / ((float) imageBorder.right - imageBorder.left);
-    float percH = ((float) tmpr.bottom) / ((float) imageBorder.bottom - imageBorder.top);
-
-    Log.d(TAG, "percX: " + percX + ", perxY: " + percY + ", percW: " + percW + ", perxH: " + percH);
-
-    // create a bitmap from source
-    final BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-    Bitmap bmp = ((BitmapDrawable) getDrawable()).getBitmap();
-    bitmapOptions.inDensity = bmp.getDensity();
-    bitmapOptions.inTargetDensity = 1;
-    bmp.setDensity(Bitmap.DENSITY_NONE);
-
-    // create a rect to translate screen points as defined in percentage into real coordinates into
-    // the bitmap
-    Rect finalCut = new Rect();
-    finalCut.left = (int) (percX * bmp.getWidth());
-    finalCut.top = (int) (percY * bmp.getHeight());
-    finalCut.right = (int) (percW * bmp.getWidth());
-    finalCut.bottom = (int) (percH * bmp.getHeight());
-
-    Log.d(TAG, "image WxH: " + getWidth() + "x" + getHeight() + ", bmp WxH: " + bmp.getWidth() + "x" + bmp.getHeight());
-    logRect(finalCut, "finalcut");
-
-    Log.d(TAG, "percW: " + percW + " - percW/imageBorder.Width (" + percW + "*" + (imageBorder.right - imageBorder.left) + "): " + (percW * (imageBorder.right - imageBorder.left)));
-    Log.d(TAG, "finalCut.width: " + (finalCut.right - finalCut.left) +
-      " - finalCut.width/bmp.Width (" + (finalCut.right - finalCut.left) + "*" + (bmp.getWidth()) + "): " + ((finalCut.right - finalCut.left) * (bmp.getWidth())));
-
-    Bitmap bmp2 = Bitmap.createBitmap(bmp, finalCut.left, finalCut.top, finalCut.right, finalCut.bottom);
-
-    return bmp2;
-
-//        bmp = Bitmap.createBitmap(bmp, r.left, r.top, r.right, r.bottom);
-
-//    image.setImageBitmap(bmp);
-
-//    return cropperBounds;
-  }
-
-  @Override
-  public void setImageBitmap(Bitmap bm) {
-    super.setImageBitmap(bm);
-//    setAdjustViewBounds(true);
   }
 
   // returns true is point is inside cropperBounds, otherwise false
@@ -321,8 +247,6 @@ public class ProfileImageCropper extends ImageView {
     if (editMode == false) return super.onTouchEvent(event);
 
     inside = isTouchInside(cropperBounds, (int) event.getX(), (int) event.getY());
-//    insideHandle = isTouchInside(handleBounds, (int) event.getX(), (int) event.getY());
-//    Log.d(TAG, "inside: " + inside + ", insideHandle: " + insideHandle);
 
     final int action = MotionEventCompat.getActionMasked(event);
 

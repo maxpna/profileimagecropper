@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -13,12 +14,12 @@ import android.widget.LinearLayout;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 
 public class ProfileImageCropperActivity extends AppCompatActivity {
   private static final int PICK_IMAGE_FROM_GALLERY = 9000;
+  private static final String TAG = "ProfileImageCropperActivity";
   ProfileImageCropper image = null;
 
   @Override
@@ -117,6 +118,7 @@ public class ProfileImageCropperActivity extends AppCompatActivity {
   }
 
   private void initDoneButton() {
+    // ref: http://stackoverflow.com/questions/8407336/how-to-pass-drawable-between-activities
     ((Button) findViewById(R.id.done)).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -134,10 +136,14 @@ public class ProfileImageCropperActivity extends AppCompatActivity {
           byte[] b = bos.toByteArray();
 
           String tmpFilename = "tmp_cropped_image.png";
+          File f=File.createTempFile("tmp_", ".png");
+          tmpFilename=f.getAbsolutePath();
 
-          FileOutputStream fileOutStream = openFileOutput(tmpFilename, MODE_PRIVATE);
-          fileOutStream.write(b);  //b is byte array
-          //otherwise this technique is useless
+          Log.d(TAG, "tmpfilename: "+tmpFilename);
+
+          // FileOutputStream fileOutStream = openFileOutput(tmpFilename, MODE_PRIVATE);
+          FileOutputStream fileOutStream = new FileOutputStream(tmpFilename);
+          fileOutStream.write(b);
           fileOutStream.close();
 
           // return in intent
@@ -162,10 +168,11 @@ public class ProfileImageCropperActivity extends AppCompatActivity {
       }
 
       try {
-        InputStream inputStream = getBaseContext().getContentResolver().openInputStream(data.getData());
+//        InputStream inputStream = getBaseContext().getContentResolver().openInputStream(data.getData());
+        Log.d(TAG, "data.getData(): "+data.getData());
         Picasso.with(getBaseContext()).load(data.getData()).fit().centerInside().into(image);
         image.setEditMode(true);
-      } catch (FileNotFoundException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
     }

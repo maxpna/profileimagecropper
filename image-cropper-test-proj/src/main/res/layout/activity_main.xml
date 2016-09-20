@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.mxp.imagecropper.MainActivity">
+    tools:context="com.mxp.imagecroppertestproj.MainActivity">
 
     <com.mxp.profileimagecropper.ProfileImageCropper
         android:id="@+id/profileImage"
@@ -22,9 +22,10 @@
         app:handleBorderWidth="5dp"
         app:handleWidth="20dp"
         android:layout_weight="1"
-        android:background="#ebcd45"
         android:scaleType="fitCenter"
-        android:src="@drawable/modelstand"/>
+        android:background="#ffffff"
+        />
+        <!--android:background="#33ebcd45"-->
     <!--app:handleBackground="#8c008c"-->
     <!--app:handleBorder="#0000ff"-->
 

@@ -3,9 +3,9 @@ package com.mxp.imagecroppertestproj;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +14,7 @@ import com.mxp.profileimagecropper.ProfileImageCropper;
 import com.mxp.profileimagecropper.ProfileImageCropperActivity;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -88,9 +89,16 @@ public class MainActivity extends AppCompatActivity {
     cropImage.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Bitmap bmp = ((ProfileImageCropper) findViewById(R.id.profileImage)).crop();
-        image.setEditMode(false);
-        image.setImageBitmap(bmp);
+        try {
+          Bitmap bmp = ((ProfileImageCropper) findViewById(R.id.profileImage)).crop();
+          image.setEditMode(false);
+          image.setImageBitmap(bmp);
+        }
+        catch(Exception e){
+          Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG)
+            .setActionTextColor(getResources().getColor(android.R.color.primary_text_dark))
+            .show();
+        }
       }
     });
   }
@@ -115,20 +123,16 @@ public class MainActivity extends AppCompatActivity {
     if (requestCode == PICK_IMAGE_FROM_GALLERY && resultCode == RESULT_OK) {
       handleFromGallery(data);
     } else if (requestCode == PICA_ACITIVTY && resultCode == RESULT_OK) {
+
+      // use file in filename, and then store it, move it, or delete it, it's in a temporary folder.
       String fileName = data.getStringExtra("result");
 
-      InputStream is = null;
       try {
-        is = openFileInput(fileName);
-        Drawable d = Drawable.createFromStream(is, fileName);
-        image.setBackground(d);
-      } catch (FileNotFoundException e) {
+        File f=new File(fileName);
+        Picasso.with(this).load(f).fit().centerInside().into(image);
+      } catch (Exception e) {
         e.printStackTrace();
       }
-
-//      File filePath = getFileStreamPath(fileName);
-//      Drawable d = Drawable.createFromPath(filePath.toString());
-//      image.setBackground(d);
     }
   }
 
@@ -139,14 +143,8 @@ public class MainActivity extends AppCompatActivity {
 
     try {
       InputStream inputStream = getBaseContext().getContentResolver().openInputStream(data.getData());
-      // Bitmap bmp=BitmapFactory.decodeStream(inputStream);
-      // Picasso.with(getBaseContext()).load(data.getData()).fit().centerCrop().into(image);
       Picasso.with(getBaseContext()).load(data.getData()).fit().centerInside().into(image);
-      // image.setImageBitmap(bmp);
       image.setEditMode(true);
-
-      // Log.d(TAG, data.getData().toString());
-      // Log.d(TAG, "bmp: "+bmp.getWidth()+"x"+bmp.getHeight());
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
