@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="PICLTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+        <!--<item name="colorButtonNormal">#dfdf00</item>-->
+
+    <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
+
+    <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>-->
+
+    <style name="profile_image_cropper_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="cropperBackground">#75fcde00</item>
+        <item name="cropperBorder">#ffffff</item>
+        <item name="cropperBorderWidth">3dp</item>
+        <item name="cropperWidth">200dp</item>
+        <item name="cropperMinimumWidth">150dp</item>
+        <item name="handleBackground">#df8507</item>
+        <item name="handleBorder">#ffffff</item>
+        <item name="handleBorderWidth">5dp</item>
+        <item name="handleWidth">20dp</item>
+        <item name="android:background">#ffffff</item>
+    </style>
+</resources>

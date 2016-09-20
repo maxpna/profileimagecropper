@@ -1,1 +1,1 @@
-include ':ImageCropper', ':ProfileImageCropper'
+include ':image-cropper-test-proj', ':profile-image-cropper'

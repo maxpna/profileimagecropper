@@ -9,15 +9,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/ImageCropper" />
-            <option value="$PROJECT_DIR$/ProfileImageCropper" />
+            <option value="$PROJECT_DIR$/image-cropper-test-proj" />
+            <option value="$PROJECT_DIR$/profile-image-cropper" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/ImageCropper" />
-            <option value="$PROJECT_DIR$/ProfileImageCropper" />
+            <option value="$PROJECT_DIR$/image-cropper-test-proj" />
+            <option value="$PROJECT_DIR$/profile-image-cropper" />
           </set>
         </option>
       </GradleProjectSettings>
