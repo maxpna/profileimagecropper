@@ -70,7 +70,7 @@ This widget extends ImageView so you should be able to use all the ImageView pro
 Add a button to your UI so the user can request a crop once they're done selecting the target area. In your button click, use the following code to drop the image.
 
 ```
-    cropButton = (Button) findViewById(R.id.cropImage);
+    Button cropButton = (Button) findViewById(R.id.cropImage);
     cropButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
