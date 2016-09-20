@@ -10,6 +10,7 @@
 3. [The Hows](#the-hows)
   1. [How to Get](#how-to-get)
   2. [How to Use](#how-to-use)
+    3. [How to Use the Widget](#how-to-use-the-widget)
 4. [The Rest](#the-rest)
 
 ##The What
@@ -22,11 +23,10 @@ The library also provides a basic activity, ProfileImageCropperActivity, that yo
 The library only adds 32KB to your project side.
 
 ##The Who
-This library is for you if you need to allow your user to select an image as their profile image (or avatar), allow them to crop it, and to use the cropped image in your project.
-
-This library is for you if all you want is to add a gradle dep and move on.
-
-This library is for you if you're ok with modest customizations and don't require extensive control the widget UI.
+This library is for you if:
+  1. you need to allow your user to select an image as their profile image (or avatar), allow them to crop it, and to use the cropped image in your project.
+  2. all you want is to add a gradle dep and move on.
+  3. you are ok with modest customizations and don't require extensive control the widget UI.
 
 ##The Hows
 ###How to Get
@@ -40,7 +40,10 @@ dependencies {
 }
 ```
 ###How to Use
-To add the widget in your existing activity, use the following code. The attributes shown allow you to customize the UI, but they are optional. If you leave them out, the library will use default values. Note, you can start with a default image loaded by using __android:src=__ element.
+You can either use the provided widget and build your own UI layout, or you can use the provided activity that does some of the work for you.
+
+####How to Use the Widget
+To add the widget in your existing activity, use the following code. The attributes shown allow you to customize the UI, but they are optional. If you leave them out, the library will use default values. Note, you can start with a default image loaded by using _android:src=_ element.
 
 ```
     <com.mxp.profileimagecropper.ProfileImageCropper
