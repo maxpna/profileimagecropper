@@ -5,14 +5,16 @@
 ```
 # profileimagecropper :sparkles:
 
-1. [What](#what)
-2. [Who](#who)
-3. [How to Get](#how-to-get)
-4. [How to Use](#how-to-use)
+1. [The What](#the-what)
+2. [The Who](#the-who)
+3. [The Hows](#the-hows)
+  2. [The Hows to Get](#how-to-get)
+  1. [How to Use](#how-to-use)
     1. [How to Use the Widget](#how-to-use-the-widget)
+    1. [How to Use the Activity](#how-to-use-the-activity)
 4. [The Rest](#the-rest)
 
-#What
+#The What
 This is a simple android library that allows you to crop images. The main purpose is to crop profile images. The library doesn't focus on picture quality, resolution fidelity, or any other aspect of image quality preservation. This library focuses on the ease of allowing a developer to add code to their app so their users can select and crop an image to use as their profile image.
 
 The library provides a widget, ProfileImageCropper, that you can use directly in your xml layout. You can configure the UI via xml attributes. You enable edit mode on the widget and once the user indicates they're ready, you call .crop() method which returns to you the modified image.
@@ -21,7 +23,7 @@ The library also provides a basic activity, ProfileImageCropperActivity, that yo
 
 The library only adds 32KB to your project side.
 
-#Who
+#The Who
 This library is for you if:
   1. you need to allow your user to select an image as their profile image (or avatar), allow them to crop it, and to use the cropped image in your project.
   2. all you want is to add a gradle dep and move on.
