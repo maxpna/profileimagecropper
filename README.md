@@ -67,3 +67,17 @@ To add the widget in your existing activity, use the following code. The attribu
 
 This widget extends ImageView so you should be able to use all the ImageView proeprties.
 
+Add a button to your UI so the user can request a crop once they're done selecting the target area. In your button click, use the following code to drop the image.
+
+```
+    cropButton = (Button) findViewById(R.id.cropImage);
+    cropButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        ProfileImageCropper image=(ProfileImageCropper)findViewById(R.id.profileImage);
+        Bitmap bmp = ((ProfileImageCropper) findViewById(R.id.profileImage)).crop();
+        image.setEditMode(false);
+        image.setImageBitmap(bmp);
+      }
+    });
+```
