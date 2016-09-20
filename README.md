@@ -47,23 +47,23 @@ You can either use the provided widget and build your own UI layout, or you can 
 To add the widget in your existing activity, use the following code. The attributes shown allow you to customize the UI, but they are optional. If you leave them out, the library will use default values. Note, you can start with a default image loaded by using _android:src=_ element.
 
 ```
-    <com.mxp.profileimagecropper.ProfileImageCropper
-        android:id="@+id/profileImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cropperBackground="#75fcde00"
-        app:cropperBorder="#ffffff"
-        app:cropperBorderWidth="3dp"
-        app:cropperWidth="200dp"
-        app:cropperMinimumWidth="150dp"
-        app:handleBackground="#df8507"
-        app:handleBorder="#ffffff"
-        app:handleBorderWidth="5dp"
-        app:handleWidth="20dp"
-        android:layout_weight="1"
-        android:background="#ebcd45"
-        android:scaleType="fitCenter"
-        android:src="@drawable/modelstand"/>
+<com.mxp.profileimagecropper.ProfileImageCropper
+    android:id="@+id/profileImage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cropperBackground="#75fcde00"
+    app:cropperBorder="#ffffff"
+    app:cropperBorderWidth="3dp"
+    app:cropperWidth="200dp"
+    app:cropperMinimumWidth="150dp"
+    app:handleBackground="#df8507"
+    app:handleBorder="#ffffff"
+    app:handleBorderWidth="5dp"
+    app:handleWidth="20dp"
+    android:layout_weight="1"
+    android:background="#ebcd45"
+    android:scaleType="fitCenter"
+    android:src="@drawable/modelstand"/>
 ```
 
 This widget extends ImageView so you should be able to use all the ImageView proeprties.
@@ -72,13 +72,13 @@ This widget extends ImageView so you should be able to use all the ImageView pro
 To load an image into the widget, use the following code. You can use any other method that loads a valid bitmap into an ImageView. Please note, DO NOT add an image as background using setBackground(), etc.
 
 ```
-      image.setImageDrawable(getResources().getDrawable(R.drawable.<your drawable>, null));
+image.setImageDrawable(getResources().getDrawable(R.drawable.<your drawable>, null));
 ```
 
 ####Loading using picasso
 ```
-  // Valid File object as f
-  Picasso.with(getBaseContext()).load(f).fit().centerInside().into(image);
+// Valid File object as f
+Picasso.with(getBaseContext()).load(f).fit().centerInside().into(image);
 ```
 
 ####Cropping the image
@@ -88,14 +88,43 @@ Add a button to your UI so the user can request a crop once they're done selecti
 **Note**: Please note at this time the .crop() method only returns a bitmap. It's possible that the returning bitmap is so large that it causes an out of memory error. A workable solution is being worked on.
 
 ```
-    Button cropButton = (Button) findViewById(R.id.cropImage);
-    cropButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        ProfileImageCropper image=(ProfileImageCropper)findViewById(R.id.profileImage);
-        Bitmap bmp = ((ProfileImageCropper) findViewById(R.id.profileImage)).crop();
-        image.setEditMode(false);
-        image.setImageBitmap(bmp);
-      }
-    });
+Button cropButton = (Button) findViewById(R.id.cropImage);
+cropButton.setOnClickListener(new View.OnClickListener() {
+  @Override
+  public void onClick(View view) {
+    ProfileImageCropper image=(ProfileImageCropper)findViewById(R.id.profileImage);
+    Bitmap bmp = ((ProfileImageCropper) findViewById(R.id.profileImage)).crop();
+    image.setEditMode(false);
+    image.setImageBitmap(bmp);
+  }
+});
 ```
+###How to Use the Activity
+To use the activity, use the following code. You can use _getBaseContext()_, _MainActivity.this_, or any other context. _getBaseContext()_ is the recommended approach. PICA_ACITIVTY is any integer value that you can use in onActivityResult().
+
+```
+Intent intent = new Intent(getBaseContext(), ProfileImageCropperActivity.class);
+startActivityForResult(intent, PICA_ACITIVTY);
+```
+
+If you want to control the look and feel of the cropper, you can pass in values for the cropper.
+
+```
+Intent intent = new Intent(MainActivity.this, ProfileImageCropperActivity.class);
+intent.putExtra("cropperBackground", Color.argb(100, 250, 190, 30));
+intent.putExtra("cropperBorder", Color.argb(255, 223, 133, 07));
+intent.putExtra("cropperBorderWidth", 5);
+intent.putExtra("cropperWidth", 350);
+intent.putExtra("cropperMinimumWidth", 200);
+intent.putExtra("handleBackground", Color.argb(255, 223, 133, 07));
+intent.putExtra("handleBorder", Color.argb(255, 223, 133, 07));
+intent.putExtra("handleBorderWidth", 5);
+intent.putExtra("handleWidth", 65);
+intent.putExtra("background", Color.argb(255, 0, 0, 0));
+intent.putExtra("controlBackground", Color.argb(255, 0, 0, 0));
+
+startActivityForResult(intent, PICA_ACITIVTY);
+```
+
+####Receiving result from launched activity
+
