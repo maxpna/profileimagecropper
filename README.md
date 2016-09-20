@@ -33,7 +33,7 @@ To use this library, add the following (highlighted) dependency in module's buil
 ```
 dependencies {
   ...
-  compile 'com.mxp.profileimagecropper:profile-image-cropper:0.0.2'
+  **compile 'com.mxp.profileimagecropper:profile-image-cropper:0.0.2'**
   ...
 }
 ```
