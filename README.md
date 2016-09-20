@@ -67,6 +67,19 @@ To add the widget in your existing activity, use the following code. The attribu
 
 This widget extends ImageView so you should be able to use all the ImageView proeprties.
 
+#####Loading directly
+To load an image into the widget, use the following code. You can use any other method that loads a valid bitmap into an ImageView. Please note, DO NOT add an image as background using setBackground(), etc.
+
+```
+      image.setImageDrawable(getResources().getDrawable(R.drawable.<your drawable>, null));
+```
+
+#####Loading using picasso
+```
+  // Valid File object as f
+  Picasso.with(getBaseContext()).load(f).fit().centerInside().into(image);
+```
+
 Add a button to your UI so the user can request a crop once they're done selecting the target area. In your button click, use the following code to drop the image.
 
 ```
