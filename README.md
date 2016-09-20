@@ -5,12 +5,11 @@
 ```
 # profileimagecropper :sparkles:
 
-1. [The What](#the-what)
-2. [The Who](#the-who)
-3. [The Hows](#the-hows)
-  1. [How to Get](#how-to-get)
-  2. [How to Use](#how-to-use)
-    3. [How to Use the Widget](#how-to-use-the-widget)
+1. [What](#what)
+2. [Who](#who)
+3. [How to Get](#how-to-get)
+4. [How to Use](#how-to-use)
+    1. [How to Use the Widget](#how-to-use-the-widget)
 4. [The Rest](#the-rest)
 
 ##The What
