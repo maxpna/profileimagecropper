@@ -1,10 +1,11 @@
 package com.mxp.imagecroppertestproj;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -39,24 +40,6 @@ public class MainActivity extends AppCompatActivity {
     initCropImage();
     initDrawBorder();
     initLoadNewButton();
-
-//    runAutomaticCrop();
-  }
-
-  private void runAutomaticCrop() {
-    Handler handler = new Handler();
-    Runnable r = new Runnable() {
-
-      @Override
-      public void run() {
-        Bitmap bmp = image.crop();
-        image.setEditMode(false);
-        image.setImageBitmap(bmp);
-//        image.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-      }
-    };
-
-    handler.postDelayed(r, 5000);
   }
 
   private void initDrawBorder() {
@@ -67,15 +50,15 @@ public class MainActivity extends AppCompatActivity {
         // image.setDrawBorder(!image.isDrawBorder());
 
         Intent intent = new Intent(getBaseContext(), ProfileImageCropperActivity.class);
-        intent.putExtra("cropperBackground", Color.argb(150, 250, 190, 30));
-        intent.putExtra("cropperBorder", Color.argb(255, 0, 0, 0));
+        intent.putExtra("cropperBackground", Color.argb(100, 250, 190, 30));
+        intent.putExtra("cropperBorder", Color.argb(255, 223, 133, 07));
         intent.putExtra("cropperBorderWidth", 5);
         intent.putExtra("cropperWidth", 350);
         intent.putExtra("cropperMinimumWidth", 200);
-        intent.putExtra("handleBackground", Color.argb(255, 200, 45, 0));
-        intent.putExtra("handleBorder", Color.argb(255, 0, 0, 0));
+        intent.putExtra("handleBackground", Color.argb(255, 223, 133, 07));
+        intent.putExtra("handleBorder", Color.argb(255, 223, 133, 07));
         intent.putExtra("handleBorderWidth", 5);
-        intent.putExtra("handleWidth", 70);
+        intent.putExtra("handleWidth", 65);
         intent.putExtra("background", Color.argb(255, 0, 0, 0));
         intent.putExtra("controlBackground", Color.argb(255, 0, 0, 0));
 
@@ -93,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
           Bitmap bmp = ((ProfileImageCropper) findViewById(R.id.profileImage)).crop();
           image.setEditMode(false);
           image.setImageBitmap(bmp);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
           Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG)
             .setActionTextColor(getResources().getColor(android.R.color.primary_text_dark))
             .show();
@@ -123,23 +105,27 @@ public class MainActivity extends AppCompatActivity {
     if (requestCode == PICK_IMAGE_FROM_GALLERY && resultCode == RESULT_OK) {
       handleFromGallery(data);
     } else if (requestCode == PICA_ACITIVTY && resultCode == RESULT_OK) {
-
-      // use file in filename, and then store it, move it, or delete it, it's in a temporary folder.
-      String fileName = data.getStringExtra("result");
-
-      try {
-        File f=new File(fileName);
-        Picasso.with(this).load(f).fit().centerInside().into(image);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+      handleFromPICA(data); // profile image cropper activity
     }
   }
 
-  private void handleFromGallery(Intent data) {
-    if (data == null) {
-      return;
+  private void handleFromPICA(Intent data) {
+    if (data == null) return;
+
+    // use file in filename, and then store it, move it, or delete it, it's in a temporary folder.
+    String fileName = data.getStringExtra("result");
+
+    try {
+      File f = new File(fileName);
+      Picasso.with(this).load(f).fit().centerInside().into(image);
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
+
+  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+  private void handleFromGallery(Intent data) {
+    if (data == null) return;
 
     try {
       InputStream inputStream = getBaseContext().getContentResolver().openInputStream(data.getData());

@@ -6,7 +6,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -19,7 +18,7 @@ import java.io.FileOutputStream;
 
 public class ProfileImageCropperActivity extends AppCompatActivity {
   private static final int PICK_IMAGE_FROM_GALLERY = 9000;
-  private static final String TAG = "ProfileImageCropperActivity";
+  private static final String TAG = "ProfileImageCropperAct";
   ProfileImageCropper image = null;
 
   @Override
@@ -89,8 +88,7 @@ public class ProfileImageCropperActivity extends AppCompatActivity {
           intent.setType("image/*");
           intent.setAction(Intent.ACTION_GET_CONTENT);
           startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_FROM_GALLERY);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
           Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG)
             .setActionTextColor(getResources().getColor(android.R.color.primary_text_dark))
             .show();
@@ -107,8 +105,7 @@ public class ProfileImageCropperActivity extends AppCompatActivity {
           Bitmap bmp = ((ProfileImageCropper) findViewById(R.id.profileImage)).crop();
           image.setEditMode(false);
           image.setImageBitmap(bmp);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
           Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG)
             .setActionTextColor(getResources().getColor(android.R.color.primary_text_dark))
             .show();
@@ -136,10 +133,8 @@ public class ProfileImageCropperActivity extends AppCompatActivity {
           byte[] b = bos.toByteArray();
 
           String tmpFilename = "tmp_cropped_image.png";
-          File f=File.createTempFile("tmp_", ".png");
-          tmpFilename=f.getAbsolutePath();
-
-          Log.d(TAG, "tmpfilename: "+tmpFilename);
+          File f = File.createTempFile("tmp_", ".png");
+          tmpFilename = f.getAbsolutePath();
 
           // FileOutputStream fileOutStream = openFileOutput(tmpFilename, MODE_PRIVATE);
           FileOutputStream fileOutStream = new FileOutputStream(tmpFilename);
@@ -163,13 +158,9 @@ public class ProfileImageCropperActivity extends AppCompatActivity {
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == PICK_IMAGE_FROM_GALLERY && resultCode == RESULT_OK) {
-      if (data == null) {
-        return;
-      }
+      if (data == null) return;
 
       try {
-//        InputStream inputStream = getBaseContext().getContentResolver().openInputStream(data.getData());
-        Log.d(TAG, "data.getData(): "+data.getData());
         Picasso.with(getBaseContext()).load(data.getData()).fit().centerInside().into(image);
         image.setEditMode(true);
       } catch (Exception e) {

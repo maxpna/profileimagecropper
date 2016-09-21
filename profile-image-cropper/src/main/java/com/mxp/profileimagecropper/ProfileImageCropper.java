@@ -228,7 +228,7 @@ public class ProfileImageCropper extends ImageView {
     return bmp2;
   }
 
-  // returns true is point is inside cropperBounds, otherwise false
+  // returns true if point is inside cropperBounds, otherwise false
   private boolean isTouchInside(Rect bounds, Point point) {
     return isTouchInside(bounds, point.x, point.y);
   }
