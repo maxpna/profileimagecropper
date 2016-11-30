@@ -1,7 +1,5 @@
 ```
-  Under construction, hard hats required at all times!
-  
-  If you're an adventurer: compile 'com.mxp.profileimagecropper:profile-image-cropper:0.0.2'  // See ya!
+  If you're an adventurer: compile 'com.mxp.profileimagecropper:profile-image-cropper:0.0.3'  // See ya!
 ```
 # profileimagecropper :sparkles:
 
@@ -40,7 +38,7 @@ To use this library, add the following compile line the dependencies section of 
 ```
 dependencies {
   ...
-  compile 'com.mxp.profileimagecropper:profile-image-cropper:0.0.2'
+  compile 'com.mxp.profileimagecropper:profile-image-cropper:0.0.3'
   ...
 }
 ```
@@ -154,13 +152,14 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
   }
 }
 ```
-#Contributions
-##What you can do
+#The Rest
+##Contributions
+###What you can do
 If you would like to contribute to this project, you can do so in a few differents ways.
   1. Please download and use this library.
   2. If you find any bugs, please report them.
   3. If you would like to create a code fix, please do so
   4. Tell others about this library.
 
-#Copyrights
+##Copyrights
 This library doesn't explicitly use any code marked by any copyright notices. However, all the work done by others in blogging different solutions, answering stackoverflow questions has been very helpful in completing this library.
