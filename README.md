@@ -11,7 +11,7 @@
     1. [How to Use the Widget](#how-to-use-the-widget)
     1. [How to Use the Activity](#how-to-use-the-activity)
 4. [The Rest](#the-rest)
-  1. [Contributions](#conributions)
+  1. [Contributions](#contributions)
     1. [What others have done](#what-others-have-done)
     2. [What you can do](#what-you-can-do)
   2. [Copyrights](#copyrights)
