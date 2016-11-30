@@ -10,12 +10,12 @@ ext {
     libraryName = 'profile-image-cropper'
     artifact = 'profile-image-cropper'
 
-    libraryDescription = 'A wrapper for Facebook Native Like Button (LikeView) on Android'
+    libraryDescription = 'A simple lib to crop profile images'
 
     siteUrl = 'https://github.com/maxpower-ndrd/profileimagecropper'
     gitUrl = 'https://github.com/maxpower-ndrd/profileimagecropper.git'
 
-    libraryVersion = '0.0.2'
+    libraryVersion = '0.0.3'
 
     developerId = 'mxp'
     developerName = 'mxp'
@@ -34,7 +34,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
-        versionName "0.0.2"
+        versionName "0.0.3"
     }
     buildTypes {
         release {
@@ -50,6 +50,10 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:design:24.0.0'
 }
+
+//bintray {
+//    configurations = ['archives']
+//}
 
 // Place it at the end of the file
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
