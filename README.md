@@ -23,7 +23,7 @@ The library provides a widget, ProfileImageCropper, that you can use directly in
 
 The library also provides a basic activity, ProfileImageCropperActivity, that you can use. The activity allows the user to select an image, crop an image, and click done. When the user clicks on done, the editted image is saved in a local file and the filename is returned to you.
 
-The library only adds 32KB to your project side.
+The library only adds 32KB to your project size.
 
 # The Who
 This library is for you if:
