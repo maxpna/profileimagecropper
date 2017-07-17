@@ -32,7 +32,7 @@ This library is for you if:
   3. you are ok with modest customizations and don't require extensive control over the widget UI.
 
 # The Hows
-##How to Get
+## How to Get
 To use this library, add the following compile line the dependencies section of your module's build.gradle file.
 
 ```
