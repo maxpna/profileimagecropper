@@ -29,7 +29,7 @@ The library only adds 32KB to your project size.
 This library is for you if:
   1. you need to allow your user to select an image as their profile image (or avatar), allow them to crop it, and to use the cropped image in your project.
   2. all you want is to add a gradle dep and move on.
-  3. you are ok with modest customizations and don't require extensive control the widget UI.
+  3. you are ok with modest customizations and don't require extensive control over the widget UI.
 
 # The Hows
 ##How to Get
