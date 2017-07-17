@@ -33,7 +33,7 @@ This library is for you if:
 
 # The Hows
 ## How to Get
-To use this library, add the following compile line the dependencies section of your module's build.gradle file.
+To use this library, add the following compile line in the dependencies section of your module's build.gradle file.
 
 ```
 dependencies {
