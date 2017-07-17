@@ -68,7 +68,7 @@ To add the widget in your existing activity, use the following code. The attribu
     android:src="@drawable/modelstand"/>
 ```
 
-This widget extends ImageView so you should be able to use all the ImageView proeprties.
+This widget extends ImageView so you should be able to use all the ImageView properties.
 
 #### Loading directly
 To load an image into the widget, use the following code. You can use any other method that loads a valid bitmap into an ImageView. Please note, DO NOT add an image as background using setBackground(), etc.
