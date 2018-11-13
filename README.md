@@ -11,9 +11,9 @@
         1. [How to Use the Widget](#how-to-use-the-widget)
         2. [How to Use the Activity](#how-to-use-the-activity)
 4. [The Rest](#the-rest)
-  1. [Contributions](#contributions)
-  2. [What you can do](#what-you-can-do)
-  3. [Copyrights](#copyrights)
+    1. [Contributions](#contributions)
+    2. [What you can do](#what-you-can-do)
+    3. [Copyrights](#copyrights)
 
 # The What
 This is a simple android library that allows you to crop images. The main purpose is to crop profile images. The library doesn't focus on picture quality, resolution fidelity, or any other aspect of image quality preservation. This library focuses on the ease of allowing a developer to add code to their app so their users can select and crop an image to use as their profile image.
